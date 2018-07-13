@@ -32,7 +32,7 @@ arma::cx_mat Bra(std::complex<double> x1 , std::complex<double> x2);
 arma::cx_mat Euler(std::complex<double> & x1,std::complex<double> &x2,double time,double dTime,double dW);
 int main(int argc, char **argv)
 {
-  int Trajectories=atoi(argv[1]);
+  // int Trajectories=atoi(argv[1]);
   // arma::cx_mat J= sqrt(Gamma)*Sigma_y;
   // arma::cx_mat Jdagga=J.t();
   // std::cout<< J <<std::endl;
@@ -43,14 +43,15 @@ int main(int argc, char **argv)
   // std::cout<<real(arma::trace(Sigma_z))<<std::endl;
   // std::cout<<Sigma_plus+Sigma_minous<<std::endl;
   // std::cout<<Sigma_minous<<std::endl;
-  // arma::cx_mat A={{Numero,2},{3,4}};
-  // arma::cx_mat B={{1,Numero},{2,2}};
-  // std::cout<<A+B<<std::endl;
+  arma::mat A={{2,1},{1,1}};
+  arma::mat B={{1,1},{3,1}};
+  arma::mat C = A*B;
+  std::cout<<C<<std::endl;
   // std::cout<<A<<std::endl;
   // A.fill(1.0);
   // std::cout<<A<<std::endl;
 
-  // std::cout<<Numero + Dos<<std::endl;
+  // std::cout<<A*B<<std::endl;
   // std::cout<<real(Numero + Dos)<<std::endl;
   // std::cout<<imag(Numero + Dos)<<std::endl;
   
@@ -61,11 +62,11 @@ int main(int argc, char **argv)
   // arma::cx_mat a=Ket(Numero,Dos);
   std::complex<double> Numero (1.0,2.0);
   std::complex<double> Dos (1.0,3.0);
-  arma:: cx_mat A=Euler(Numero,Dos,10,0.1,0.02);
+  // arma:: cx_mat A=Euler(Numero,Dos,10,0.1,0.02);
   
   // arma::cx_mat A(2,2);
   // A.eye();
-  std::cout<<A<<std::endl;
+  // std::cout<<A<<std::endl;
   // std::cout<<Bra(Numero,Dos)<<std::endl;
   return 0;
 }
