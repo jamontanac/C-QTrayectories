@@ -25,13 +25,15 @@ const arma::cx_mat J= sqrt(Gamma)*Sigma_z;
 const arma::cx_mat Jdagga= J.t();
 // ----------------------- Defining Functions ----------------------
 double Lambda(double time);
-// arma::cx_mat Hamiltonian(arma::cx_mat & H,double time);
 arma::cx_mat Hamiltonian(double time);
 arma::cx_mat Ket(std::complex<double> x1 , std::complex<double> x2);
 arma::cx_mat Bra(std::complex<double> x1 , std::complex<double> x2);
 arma::cx_mat Euler(std::complex<double> & x1,std::complex<double> &x2,double time,double dTime,double dW);
 int main(int argc, char **argv)
 {
+  std::cout.precision(16);
+  std::cout.setf(std::ios::scientific);
+  // std::cout.setprecision(std::numeric_limits<long double>::digits10 + 1);
   // int Trajectories=atoi(argv[1]);
   // arma::cx_mat J= sqrt(Gamma)*Sigma_y;
   // arma::cx_mat Jdagga=J.t();
@@ -43,10 +45,10 @@ int main(int argc, char **argv)
   // std::cout<<real(arma::trace(Sigma_z))<<std::endl;
   // std::cout<<Sigma_plus+Sigma_minous<<std::endl;
   // std::cout<<Sigma_minous<<std::endl;
-  arma::mat A={{2,1},{1,1}};
-  arma::mat B={{1,1},{3,1}};
-  arma::mat C = A*B;
-  std::cout<<C<<std::endl;
+  // arma::mat A={{2,1},{1,1}};
+  // arma::mat B={{1,1},{3,1}};
+  // arma::mat C = A*B;
+  // std::cout<<C<<std::endl;
   // std::cout<<A<<std::endl;
   // A.fill(1.0);
   // std::cout<<A<<std::endl;
@@ -62,11 +64,12 @@ int main(int argc, char **argv)
   // arma::cx_mat a=Ket(Numero,Dos);
   std::complex<double> Numero (1.0,2.0);
   std::complex<double> Dos (1.0,3.0);
-  // arma:: cx_mat A=Euler(Numero,Dos,10,0.1,0.02);
+  arma:: cx_mat A=Euler(Numero,Dos,10,0.1,0.02);
   
   // arma::cx_mat A(2,2);
   // A.eye();
-  // std::cout<<A<<std::endl;
+  std::cout<<A<<std::endl;
+  std::cout<<A(0,0)<<"  "<< A(1,0)<<std::endl;
   // std::cout<<Bra(Numero,Dos)<<std::endl;
   return 0;
 }
@@ -80,11 +83,7 @@ arma::cx_mat Hamiltonian(double time)
   arma::cx_mat H = Epsilon*Sigma_z + Lambda(time)*Sigma_x;
   return H;
 }
-// arma::cx_mat Hamiltonian(arma::cx_mat & H,double time)
-// {
-//   H = Epsilon*Sigma_z + Lambda(time)*Sigma_x;
-//   return H;
-// }
+
 arma::cx_mat Ket(std::complex<double> x1 , std::complex<double> x2)
 {
   arma::cx_mat Matriz (2,1);
@@ -103,7 +102,10 @@ arma::cx_mat Euler(std::complex<double> & x1,std::complex<double> & x2,double ti
 {
   arma::cx_mat Id(2,2);
   Id.eye();
-  arma::cx_mat A1=(Id-Jdagga);
-  return A1;
+  std::complex<double> Iimag(0.0,1.0);
+  arma::cx_mat A = (Id - Jdagga*J*0.5 - (Iimag/Hbar)*Hamiltonian(time))*Ket(x1,x2);
+  arma::cx_mat B = J*Ket(x1,x2);
+  arma::cx_mat eulermethod = A*dTime+B*dW;
+  return eulermethod;
     
 }
