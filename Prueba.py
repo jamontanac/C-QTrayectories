@@ -51,8 +51,10 @@ def bra(a,b):
     return np.matrix([[a.conjugate(),b.conjugate()]])
 #----------------------method-------------------------------------------
 def euler(a,b,t,dt,dW):
-    A1=((np.identity(2)-Jdag()*J()))
-    return A1
+    A1=(np.identity(2)-Jdag()*J()*0.5-(1.0*1j/hbar)*H(t))*ket(a,b)
+    B1=J()*ket(a,b)
+    method=A1*dt+B1*dW
+    return method
     # /2.0-(1.0*1j/hbar)*H(t))*ket(a,b))[0,0]
     # A2=((np.identity(2)-Jdag()*J()/2.0-(1.0*1j/hbar)*H(t))*ket(a,b))[1,0]
     # B1=(J()*ket(a,b))[0,0]
@@ -60,7 +62,6 @@ def euler(a,b,t,dt,dW):
     # a=a+A1*dt+B1*dW
     # b=b+A2*dt+B2*dW
     # return a,b
-   
 # std::complex<double> Numero (1.0,2.0);
 # std::complex<double> Dos (1.0,3.0);
 
