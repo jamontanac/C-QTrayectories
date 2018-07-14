@@ -59,4 +59,5 @@ def euler(a,b,t,dt,dW):
 
 Numero=1.0+2.0*1j
 Dos=1.0+3.0*1j
-print euler(Numero,Dos,10,0.1,0.02)
+# print euler(Numero,Dos,10,0.1,0.02)
+print state(Numero,Dos)
