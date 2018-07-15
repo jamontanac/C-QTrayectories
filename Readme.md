@@ -7,4 +7,4 @@ The library used here are:
 And the way of compiling is simply g++ -std=c++11 "Code.cpp" -larmadillo
 To configure the GitHub i used the help of [Don't be afraid to commit](http://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/commandlinegit.html)
 To do list:
-- [X] Implement as constants the part of the operators such as the Pauli matrix operators (![equation](https://www.codecogs.com/eqnedit.php?latex=$\sigma_i$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$\sigma_i$) and the operators of the bath ($J$) and ($J^{\dagga}$)
+- [X] Implement as constants the part of the operators such as the Pauli matrix operators (![equation](https://www.codecogs.com/eqnedit.php?latex=$\sigma_i$) and the operators of the bath ($J$) and ($J^{\dagga}$)
