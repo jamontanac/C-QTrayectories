@@ -48,13 +48,15 @@ To do list:
 	g++-8 -std=c++11 Secondpart.cpp -fsanitize=address -fsanitize=leak -fvisibility=hidden -larmadillo
 	```
 
-- [ ] Implement the code for a single trajectory in the range of ![equation](https://latex.codecogs.com/gif.latex?N=t_{max}/dt) with ![equation](https://latex.codecogs.com/gif.latex?t_{max}) the time of the experiment.
+- [X] Implement the code for a single trajectory in the range of ![equation](https://latex.codecogs.com/gif.latex?N=t_{max}/dt) with ![equation](https://latex.codecogs.com/gif.latex?t_{max}) the time of the experiment.
 
-- [ ] At the level of a single trajectory compute the coordinates ![equation](https://latex.codecogs.com/gif.latex?x(t),y(t),z(t)) of the block sphere as ![equation](https://latex.codecogs.com/gif.latex?\mathrm{tr}(\sigma_{i}\rho(t))).
+- [X] At the level of a single trajectory compute the coordinates ![equation](https://latex.codecogs.com/gif.latex?x(t),y(t),z(t)) of the block sphere as ![equation](https://latex.codecogs.com/gif.latex?\mathrm{tr}(\sigma_{i}\rho(t))).
 
 - [X] For a single trajectory compute the thermodynamic quantities such as heat ![equation](https://latex.codecogs.com/gif.latex?\mathcal{Q}[\rho(t)]) and work ![equation](https://latex.codecogs.com/gif.latex?\mathcal{W}[\rho(t)]) at every time.
 
 - [ ] Change the method to a method that makes the Unitary and non-unitary evolution of a state in order to calculate separate things like heat, work and energy.
+
+- [ ] Make a program that computes the averages of all computed quantities in the latter program over trajectories.
 
 - [ ] Generate correlated noise to change the unravelings.[General Theory](https://es.wikipedia.org/wiki/Distribuci%C3%B3n_normal_multivariante)
 > To generate a multivariable normal distribution it is possible to take a random vector of independent variables ![equation](https://latex.codecogs.com/gif.latex?X_1,X_2\dots,X_n) with normal distribution ![equation](https://latex.codecogs.com/gif.latex?X_{j}\stackrel{d}{=}\mathcal{N}(\mu_{j},\sigma_{j}^{2})) for ![equation](https://latex.codecogs.com/gif.latex?j=1,\dots,n) and then consider the next linear combination ![equation](https://latex.codecogs.com/gif.latex?Y=\sum_{j=1}^{n}\alpha_{j}X_j) we get that the random variable ![equation](https://latex.codecogs.com/gif.latex?Y) has a multivariate normal distribution with parameters ![equation](https://latex.codecogs.com/gif.latex?\mu:=\sum_{j=1}^n\mu_j\alpha_j) and ![equation](https://latex.codecogs.com/gif.latex?\sigma^2:=\sum_{j=1}^n\sigma_j^2\alpha_j^2). This for the case of independent variables the general case is presented in the section 5 o this [Book](http://bdigital.unal.edu.co/48054/2/9587014499.PDF).
