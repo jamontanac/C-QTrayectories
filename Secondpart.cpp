@@ -37,15 +37,42 @@ int main(int argc, char **argv)
   std::cout.setf(std::ios::scientific);
   std::mt19937 generator(1);
   std::normal_distribution<double> Noise(Mu, Sigma);//set a normal distribution to call it we do Noise(generator)
+  int Size = 2;
+  
+  // -------------- Initial Conditions --------------
+  std::complex<double> x0 (1.0,0.0);
+  std::complex<double> y0 (0.0,0.0);
+  double t=0.0;
+
+  // -------------------------------------------------
+
+  // -----------------thing to use----------------------
+  arma::cx_mat rho1 (Size,Size);
+  arma::cx_mat rho2 (Size,Size);
+  arma::cx_mat ketstate (Size,1);
+  double dXi = 0.0;
+  
   // int Trajectories=atoi(argv[1]);
 
   // ---------------------------------------------------------
   // std::mt19937 generator(std::random_device{}()); //std::mersenne_twister_engine set with seed the time of the computer with _64 we set to 64 bits
   // std::uniform_int_distribution<int> distribution(-100,100);//make a uniform distribution
   // ---------------------------------------------------------------
+
+   rho1= State(x0,y0);
+   dXi=Noise(generator);
+   ketstate=Euler(x0,y0,t,dt,dXi);
+   std::cout<<ketstate<<std::endl;
+   std::cout<<ketstate.t()*ketstate<<std::endl;
+   ketstate=Normalise(ketstate);
+   std::cout<<ketstate<<std::endl;
+   std::cout<<ketstate.t()*ketstate<<std::endl;
+   // std::cout<<rho1<<std::endl;
+
+
   
-  std::complex<double> Numero (1.0,2.0);
-  std::complex<double> Dos (1.0,3.0);
+  // std::complex<double> Numero (1.0,2.0);
+  // std::complex<double> Dos (1.0,3.0);
   
   // arma:: cx_mat A=Euler(Numero,Dos,10,0.1,0.02);
   // arma:: cx_mat A=State(Numero,Dos);
@@ -97,7 +124,7 @@ arma::cx_mat State(std::complex<double> x1,std::complex<double> x2)
 }
 arma::cx_mat Normalise(arma::cx_mat Not_normalised)
 {
-  double Norm=real(arma::as_scalar(Not_normalised.t()*Not_normalised));
+  std::complex<double> Norm=std::sqrt(arma::as_scalar(Not_normalised.t()*Not_normalised));
   arma::cx_mat normalisedstate=Not_normalised/Norm;
   return normalisedstate;
 }
