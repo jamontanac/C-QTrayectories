@@ -55,9 +55,17 @@ def euler(a,b,t,dt,dW):
     B1=J()*ket(a,b)
     method=A1*dt+B1*dW
     return method
-    
+def Normalise(a,b):
+    A=ket(a,b)
+    norm=cmath.sqrt(A.conjugate().transpose()*A)
+    A=A/norm
+    return A
 
-Numero=1.0+2.0*1j
-Dos=1.0+3.0*1j
-# print euler(Numero,Dos,10,0.1,0.02)
-print state(Numero,Dos)
+rho1 = state(1.,0.)
+dXi = -5.4974*10**-2.0
+nuevo = euler(1.0,0.0,0,dt,dXi)
+nuevo = Normalise(nuevo[0,0],nuevo[1,0])
+rho2 = state(nuevo[0,0],nuevo[1,0])
+dH=H(dt)-H(0)
+drho=rho2-rho1
+print (rho2*dH).trace()[0,0]
