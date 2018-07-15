@@ -19,9 +19,9 @@ To do list:
 - [X] Implement the normalisation function to normalise at every step of the method.
 
 	* Up to this point everything is implemented in the code called:
-	```
+	``` c++
 	Secondpart.cpp
-	```
+	``` c++
 	And the way I am compiling until now is:
 	```
 	g++-8 -std=c++11 Secondpart.cpp -fsanitize=address -fsanitize=leak -fvisibility=hidden -larmadillo
