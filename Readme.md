@@ -23,7 +23,7 @@ To do list:
 	Secondpart.cpp
 	```
 	And the way I am compiling until now is:
-	```
+	``` c++
 	g++-8 -std=c++11 Secondpart.cpp -fsanitize=address -fsanitize=leak -fvisibility=hidden -larmadillo
 	```
 
