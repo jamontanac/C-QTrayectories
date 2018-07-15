@@ -18,7 +18,7 @@ To do list:
 
 - [X] Implement the normalisation function to normalise at every step of the method.
 
-	* Up to this point is implemented in the code called:
+	* Up to this point everything is implemented in the code called:
 	```
 	Secondpart.cpp
 	```
@@ -28,3 +28,5 @@ To do list:
 	```
 
 - [ ] Implement the code for a single trajectory in the range of ![equation](https://latex.codecogs.com/gif.latex?N=t_{max}/dt) with ![equation](https://latex.codecogs.com/gif.latex?t_{max}) the time of the experiment.
+
+-[ ] At the level of a single trajectory compute the coordinates ![equation](https://latex.codecogs.com/gif.latex?x(t),y(t),z(t)) of the block sphere as ![equation](https://latex.codecogs.com/gif.latex?\mathrm{tr}(\sigma_{i}\rho(t))).
