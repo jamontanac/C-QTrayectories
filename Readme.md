@@ -26,6 +26,8 @@ To do list:
 > And for the case of a normal distribution
 	```c++
 	seed=1;
+	Mu=0.0;
+	Sigma=1.0;
 	std::mt19937 generator(seed);
   	std::normal_distribution<double> Noise(Mu, Sigma);//set a normal distribution to call it we do Noise(generator)
 	```
