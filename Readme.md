@@ -18,4 +18,13 @@ To do list:
 
 - [X] Implement the normalisation function to normalise at every step of the method.
 
+	* Up to this point is implemented in the code called:
+	```
+	Secondpart.cpp
+	```
+	And the way I am compiling until now is:
+	```
+	g++-8 -std=c++11 Secondpart.cpp -fsanitize=address -fsanitize=leak -fvisibility=hidden -larmadillo
+	```
+
 - [ ] Implement the code for a single trajectory in the range of ![equation](https://latex.codecogs.com/gif.latex?N=t_{max}/dt) with ![equation](https://latex.codecogs.com/gif.latex?t_{max}) the time of the experiment.
