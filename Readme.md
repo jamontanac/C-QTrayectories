@@ -17,13 +17,13 @@ To do list:
 - [X] Implement the noise with normal distribution with parameters given by ![equation](https://latex.codecogs.com/gif.latex?\mu=0) and ![equation](https://latex.codecogs.com/gif.latex?\sigma=\sqrt{dt}). [Generate Normal noise](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform)
 
 - [X] Make use of the Mersenne twister engine by Matsumoto and Nishimura to generate the numbers, it's useful due to its period. the way to use it is for the case of a uniform distribution
-	*the way to use it is for the case of a uniform distribution is
+	* the way to use it is for the case of a uniform distribution is
 	```c++
 	seed=std::random_device{}(); //Here we define the time as the seed
 	std::mt19937 generator(seed);
 	std::uniform_int_distribution<int> distribution(-100,100);// this produce a uniform distribution between -100 and 100
 	```
-	*And for the case of a normal distribution
+	* And for the case of a normal distribution
 	```c++
 	seed=1;
 	Mu=0.0;
@@ -31,7 +31,7 @@ To do list:
 	std::mt19937 generator(seed);
   	std::normal_distribution<double> Noise(Mu, Sigma);//set a normal distribution to call it we do Noise(generator)
 	```
-	*if we want to improve the generator to 64 bit all we need is to call it as "mt19937_64"
+	* if we want to improve the generator to 64 bit all we need is to call it as "mt19937_64"
 	```c++
 	seed=std::random_device{}();
 	std::mt19937_64 generator(seed);
