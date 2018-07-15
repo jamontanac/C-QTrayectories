@@ -30,18 +30,29 @@ arma::cx_mat Ket(std::complex<double> x1 , std::complex<double> x2);
 arma::cx_mat Bra(std::complex<double> x1 , std::complex<double> x2);
 arma::cx_mat Euler(std::complex<double> & x1,std::complex<double> &x2,double time,double dTime,double dW);
 arma::cx_mat State(std::complex<double> x1,std::complex<double> x2);
+arma::cx_mat Normalise(arma::cx_mat Not_normalised);
 int main(int argc, char **argv)
 {
   std::cout.precision(16);
   std::cout.setf(std::ios::scientific);
+  std::mt19937 generator(1);
+  std::normal_distribution<double> Noise(Mu, Sigma);//set a normal distribution to call it we do Noise(generator)
   // int Trajectories=atoi(argv[1]);
 
+  // ---------------------------------------------------------
+  // std::mt19937 generator(std::random_device{}()); //std::mersenne_twister_engine set with seed the time of the computer with _64 we set to 64 bits
+  // std::uniform_int_distribution<int> distribution(-100,100);//make a uniform distribution
+  // ---------------------------------------------------------------
+  
   std::complex<double> Numero (1.0,2.0);
   std::complex<double> Dos (1.0,3.0);
+  
   // arma:: cx_mat A=Euler(Numero,Dos,10,0.1,0.02);
-  arma:: cx_mat A=State(Numero,Dos);
-  std::cout<<A<<std::endl;
+  // arma:: cx_mat A=State(Numero,Dos);
+  // std::cout<<arma::as_scalar(Bra(Numero,Dos)*Ket(Numero,Dos))<<std::endl;
   // std::cout<<A(0,0)<<"  "<< A(1,0)<<std::endl;
+  // std::cout<<Normalise(A)<<std::endl;
+  // std::cout<<A<<std::endl;
   return 0;
 }
 // --------------- Implementing functions ----------------
@@ -82,7 +93,11 @@ arma::cx_mat Euler(std::complex<double> & x1,std::complex<double> & x2,double ti
 arma::cx_mat State(std::complex<double> x1,std::complex<double> x2)
 {
   arma::cx_mat rho = Ket(x1,x2)*Bra(x1,x2);
-  return rho;
-  
-  
+  return rho;  
+}
+arma::cx_mat Normalise(arma::cx_mat Not_normalised)
+{
+  double Norm=real(arma::as_scalar(Not_normalised.t()*Not_normalised));
+  arma::cx_mat normalisedstate=Not_normalised/Norm;
+  return normalisedstate;
 }
