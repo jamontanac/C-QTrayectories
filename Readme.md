@@ -66,11 +66,12 @@ Here there is a todo list showng the general content of this repository:
 - [X] Change the implementation of the function Euler and the fuctions that evolve Unitarlily and Non-Unitarily.
 
 - [ ] Implement the fact that the initial state must be an eigenvector of the hamiltonian at time ![equation](https://latex.codecogs.com/gif.latex?t).
-> This is also necessary to compute the transition probability at every time ![equation](https://latex.codecogs.com/gif.latex?t) ![equation](https://latex.codecogs.com/gif.latex?P_{m,n}(t)), here is necessary that ![equation](https://latex.codecogs.com/gif.latex?m,&space;n) are both eigenstates of the Hamiltonian.
+> This is also necessary to compute the transition probability at every time ![equation](https://latex.codecogs.com/gif.latex?P_{m,n}(t)), here is necessary that ![equation](https://latex.codecogs.com/gif.latex?m,&space;n) are both eigenstates of the Hamiltonian.
 
 - [ ] Implement a code that computes the transition probability ![equation](https://latex.codecogs.com/gif.latex?P_{m,n}(t)) and study the behaviour of this transition probability in function of time.  
 
 [Help building the readme](https://help.github.com/articles/basic-writing-and-formatting-syntax/#using-emoji) :+1:
 
-# Thermodynamics
-[Content of the file Thermodynamics](Tests/Thermodynamics/ReadmeThermo.md)
+In The next section i present the content of every folder in this repository.
+## Thermodynamics
+	[Content of the folder Thermodynamics](Tests/Thermodynamics/ReadmeThermo.md)
