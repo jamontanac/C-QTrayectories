@@ -63,7 +63,7 @@ Here there is a todo list showng the general content of this repository:
 - [ ] Generate correlated noise to change the unravelings.[General Theory](https://es.wikipedia.org/wiki/Distribuci%C3%B3n_normal_multivariante)
 > To generate a multivariable normal distribution it is possible to take a random vector of independent variables ![equation](https://latex.codecogs.com/gif.latex?X_1,X_2\dots,X_n) with normal distribution ![equation](https://latex.codecogs.com/gif.latex?X_{j}\stackrel{d}{=}\mathcal{N}(\mu_{j},\sigma_{j}^{2})) for ![equation](https://latex.codecogs.com/gif.latex?j=1,\dots,n) and then consider the next linear combination ![equation](https://latex.codecogs.com/gif.latex?Y=\sum_{j=1}^{n}\alpha_{j}X_j) we get that the random variable ![equation](https://latex.codecogs.com/gif.latex?Y) has a multivariate normal distribution with parameters ![equation](https://latex.codecogs.com/gif.latex?\mu:=\sum_{j=1}^n\mu_j\alpha_j) and ![equation](https://latex.codecogs.com/gif.latex?\sigma^2:=\sum_{j=1}^n\sigma_j^2\alpha_j^2). This for the case of independent variables the general case is presented in the section 5 o this [Book](http://bdigital.unal.edu.co/48054/2/9587014499.PDF).
 
-- [X] Change the implementation of the function Euler and the fuctions that evolve Unitarlily and Non-Unitarily.
+- [X] Change the implementation of the function Euler and the functions that evolve Unitarlily and Non-Unitarily.
 
 - [ ] Implement the fact that the initial state must be an eigenvector of the hamiltonian at time ![equation](https://latex.codecogs.com/gif.latex?t).
 > This is also necessary to compute the transition probability at every time ![equation](https://latex.codecogs.com/gif.latex?P_{m,n}(t)), here is necessary that ![equation](https://latex.codecogs.com/gif.latex?m,&space;n) are both eigenstates of the Hamiltonian.
@@ -74,4 +74,4 @@ Here there is a todo list showng the general content of this repository:
 
 In The next section i present the content of every folder in this repository.
 ## Thermodynamics
-	[Content of the folder Thermodynamics](Tests/Thermodynamics/ReadmeThermo.md)
+To see details about this folder check [Content of the folder Thermodynamics](Tests/Thermodynamics/ReadmeThermo.md)
