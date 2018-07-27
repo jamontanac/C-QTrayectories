@@ -51,7 +51,7 @@ arma::cx_mat Initial_Conditions(std::complex<double> x1,std::complex<double> x2)
 
 int main(int argc, char **argv)
 {
-  int Trajectories = 1;
+  int Trajectories = 500;
   // int Trajectories=atoi(argv[1]);
   std::cout.precision(16);
   std::cout.setf(std::ios::scientific);
@@ -92,7 +92,6 @@ int main(int argc, char **argv)
       for(int step=0; step< N; step++)
 	{
 	  rho0 = State(New_ket);
-	  std::cout<< rho0<<std::endl;
 	  dXi = Noise(generator);
 	  // --------------- Old Method --------------------
 	  // ketstate = Euler(New_ket,t,dt,dXi);
@@ -120,7 +119,7 @@ int main(int argc, char **argv)
 	  Z_avg[step] += Z_block/Trajectories;
 	
 	  // std::cout<<t/Tmax<<"  "<< X_block<<"  "<< Y_block<<"  "<< Z_block<<std::endl;
-	  // std::cout<<t/Tmax<<"  "<< Energy<<"  "<< Heat <<"  "<< Work<<std::endl;
+	  std::cout<<t/Tmax<<"  "<< Energy<<"  "<< Heat <<"  "<< Work<<std::endl;
 	  t += dt;
 	  New_ket=ketstate;
 

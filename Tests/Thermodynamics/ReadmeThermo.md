@@ -21,9 +21,11 @@ In the present folder i present the solution of the first part of computing the 
 	g++-8 -std=c++11 NewImplementation.cpp -larmadillo -fsanitize=address -fsanitize=leak -fsanitize=undefined -fvisibility=hidden -Wall
 	```
 5. The output of this code is redirect to the folder [Plots](./Plots) in three different files named:
+
 	* **datos.txt**
 	* **datosAVG.txt**
 	* **thermo.txt**
+
 In the first one is the data of the Bloch sphere over a single trajectory. The second one is the The Bloch sphere for averaged trajectories (The number of trajectories that I use to average can change). Finally the third one is the data of the thermodynamic quantities along a single trajectory.
 
 * The folder named [Plots](./Plots) 
