@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pylab as plt
-datos=np.genfromtxt('datos.txt')
+datos=np.genfromtxt('datosAVG.txt')
 tt=datos[:,0]
 Xavg0=datos[:,1]
 Yavg0=datos[:,2]
@@ -24,5 +24,5 @@ fig[2].plot(tt,Zavg0,linestyle='-',color='navy')
 fig[0].set_xlim(tt.min(),tt.max())
 fig[1].set_xlim(tt.min(),tt.max())
 fig[2].set_xlim(tt.min(),tt.max())
-plt.savefig('Bloch.pdf')
+plt.savefig('BlochAVG.pdf')
 plt.show()
