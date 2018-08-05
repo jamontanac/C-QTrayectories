@@ -45,6 +45,4 @@ std::complex<double> Correlated_noise (double Noise1, double Noise2)
   tweaked= (Q*original + target_mean);
   std::complex<double> Cor_Noise (tweaked(0),tweaked(1));
   return Cor_Noise;
-  // std::complex<double> x (0.0,0.0)
-  // return U_corr;
 }

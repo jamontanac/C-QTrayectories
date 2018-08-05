@@ -15,7 +15,8 @@ const double G = 6.25;
 const double dt = 0.01;
 const double Tmax=Tau;
 const int N=Tmax/dt;
-const double Sigma=sqrt(dt);
+// const double Sigma=sqrt(dt);
+const double Sigma = 1.0;
 const double Mu=0.0;
 
 // -------------------- Set the size of our problem ----------------
@@ -37,12 +38,13 @@ const arma::cx_mat Jdagga= J.t();
 // ----------------------- Defining Functions ----------------------
 
 double Lambda(double time);
+std::complex<double> Correlated_noise (double Noise1, double Noise2);
 arma::cx_mat Hamiltonian(double time);
 arma::cx_mat Ket(std::complex<double> x1 , std::complex<double> x2);
 arma::cx_mat Bra(std::complex<double> x1 , std::complex<double> x2);
-arma::cx_mat Euler(arma::cx_mat & VectorState,double time,double dTime,double dW);
-arma::cx_mat Unitary(arma::cx_mat & VectorState,double time,double dTime, double dW);
-arma::cx_mat Non_Unitary(arma::cx_mat & VectorState,double time,double dTime,double dW);
+arma::cx_mat Euler(arma::cx_mat & VectorState,double time,double dTime, std::complex<double> dW);
+arma::cx_mat Unitary(arma::cx_mat & VectorState,double time,double dTime, std::complex<double> dW);
+arma::cx_mat Non_Unitary(arma::cx_mat & VectorState,double time,double dTime, std::complex<double> dW);
 arma::cx_mat State(arma::cx_mat VectorState);
 arma::cx_mat Normalise(arma::cx_mat Not_normalised);
 arma::cx_mat Initial_Conditions(std::complex<double> x1,std::complex<double> x2);
@@ -51,12 +53,14 @@ arma::cx_mat Initial_Conditions(std::complex<double> x1,std::complex<double> x2)
 
 int main(int argc, char **argv)
 {
-  int Trajectories = 500;
+  int Trajectories = 1;
   // int Trajectories=atoi(argv[1]);
   std::cout.precision(16);
   std::cout.setf(std::ios::scientific);
   std::mt19937 generator(1);
-  std::normal_distribution<double> Noise(Mu, Sigma);//set a normal distribution to call it we do Noise(generator)
+  std::normal_distribution<double> Noise1(Mu, Sigma);
+  std::normal_distribution<double> Noise2(Mu, Sigma);
+  // std::normal_distribution<double> Noise(Mu, Sigma);//set a normal distribution to call it we do Noise(generator)
   
   
   
@@ -74,7 +78,7 @@ int main(int argc, char **argv)
   Y_avg.fill(0.0);
   arma::vec Z_avg(N);
   Z_avg.fill(0.0);
-  double dXi = 0.0;
+  std::complex<double> dXi (0.0,0.0);
   double Work = 0.0;
   double Energy = 0.0;
   double Heat = 0.0;
@@ -92,7 +96,8 @@ int main(int argc, char **argv)
       for(int step=0; step< N; step++)
 	{
 	  rho0 = State(New_ket);
-	  dXi = Noise(generator);
+	  dXi=Correlated_noise(Noise1(generator),Noise2(generator));
+	  // dXi = Noise(generator);
 	  // --------------- Old Method --------------------
 	  // ketstate = Euler(New_ket,t,dt,dXi);
 	  // ----------- Evolve unitarily ----------------
@@ -140,6 +145,28 @@ double Lambda(double time)
 {
   return G*(1.0/cosh(Nu*(1.0 - (time/Tau))));
 }
+
+std::complex<double> Correlated_noise (double Noise1, double Noise2)
+{
+  arma::vec Eigenvalues;
+  arma::mat Eigenvectors;
+   // u that generates the noise 
+  std::complex<double> U_corr (1.0,0.0);
+  arma::vec target_mean  = {0.0, 0.0};
+  arma::mat Matrix_Variance = {{1.0+real(U_corr),imag(U_corr)},{imag(U_corr),1.0-real(U_corr)}};
+  Matrix_Variance=(dt/2)*Matrix_Variance;
+  eig_sym(Eigenvalues, Eigenvectors, Matrix_Variance);
+  arma::mat l = sqrt(diagmat(Eigenvalues));
+  arma::mat Q = Eigenvectors * l;
+  arma::vec original (2);
+  original.zeros();
+  arma::vec tweaked (2);
+  original={Noise1,Noise2};
+  tweaked= (Q*original + target_mean);
+  std::complex<double> Cor_Noise (tweaked(0),tweaked(1));
+  return Cor_Noise;
+}
+
 arma::cx_mat Hamiltonian(double time)
 {
   arma::cx_mat H = Epsilon*Sigma_z + Lambda(time)*Sigma_x;
@@ -160,7 +187,7 @@ arma::cx_mat Bra(std::complex<double> x1 , std::complex<double> x2)
   Matriz(0,1) = std::conj(x2);
   return Matriz;
 }
-arma::cx_mat Euler(arma::cx_mat & VectorState,double time,double dTime,double dW)
+arma::cx_mat Euler(arma::cx_mat & VectorState,double time,double dTime,std::complex<double> dW)
 {
   arma::cx_mat Id(2,2);
   Id.eye();
@@ -183,14 +210,14 @@ arma::cx_mat Normalise(arma::cx_mat Not_normalised)
   arma::cx_mat normalisedstate=Not_normalised/Norm;
   return normalisedstate;
 }
-arma::cx_mat Unitary(arma::cx_mat & VectorState,double time,double dTime, double dW)
+arma::cx_mat Unitary(arma::cx_mat & VectorState,double time,double dTime, std::complex<double> dW)
 {
   std::complex<double> Iimag(0.0,1.0);
   arma::cx_mat A = -(Iimag/Hbar)*Hamiltonian(time)*VectorState;
   VectorState += A*dTime;
   return VectorState;
 }
-arma::cx_mat Non_Unitary(arma::cx_mat & VectorState,double time,double dTime,double dW)
+arma::cx_mat Non_Unitary(arma::cx_mat & VectorState,double time,double dTime,std::complex<double> dW)
 {
   arma::cx_mat Id(2,2);
   Id.eye();
