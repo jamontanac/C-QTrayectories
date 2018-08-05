@@ -28,4 +28,10 @@ In the present folder i present the solution of the first part of computing the 
 
 In the first one is the data of the Bloch sphere over a single trajectory. The second one is the The Bloch sphere for averaged trajectories (The number of trajectories that I use to average can change). Finally the third one is the data of the thermodynamic quantities along a single trajectory.
 
-* The folder named [Plots](./Plots) 
+* The folder named [Plots](./Plots) has the files to plot de output given by Newimplementation.cpp, there are some files named:
+	* **plotsAVG.py**
+	* **Thermoplots.py**
+	* **Blochplots.py**
+These three are the programs in python used to plot the averaged trajectories, the thermodynamic quantities and the Bloch sphere respectly. These generates the .pdf files that can be found in the folder [Plots](./Plots).
+
+* The File named [Newimplementation_CorNoise](./Newimplementation_CorNoise.cpp) is an implementation of the last code but with the difference that this one use correlated noise based in the noise produced by a normal distribution.
