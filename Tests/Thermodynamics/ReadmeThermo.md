@@ -42,5 +42,5 @@ These three are the programs in python used to plot the averaged trajectories, t
 		```
 		
 	By changing this ![equation](https://latex.codecogs.com/gif.latex?\U_{corr}) the noise I generate changes for example:
-	> ![equation](https://latex.codecogs.com/gif.latex?U_{corr} =1), generates real noise (Homodyne Detection), ![equation](https://latex.codecogs.com/gif.latex?U_{corr}=-1), generates imaginary pure noise (Heterodyne Detection) and ![equation](https://latex.codecogs.com/gif.latex?U_{corr}=0) generates complex non correlated noise (Photo detection)
+	> when![equation](https://latex.codecogs.com/gif.latex?U_{corr}=1), generates real noise (Homodyne Detection), ![equation](https://latex.codecogs.com/gif.latex?U_{corr}=-1), generates imaginary pure noise (Heterodyne Detection) and ![equation](https://latex.codecogs.com/gif.latex?U_{corr}=0) generates complex non correlated noise (Photo detection)
 		
