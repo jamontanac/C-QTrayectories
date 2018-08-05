@@ -34,4 +34,13 @@ In the first one is the data of the Bloch sphere over a single trajectory. The s
 	* **Blochplots.py**
 These three are the programs in python used to plot the averaged trajectories, the thermodynamic quantities and the Bloch sphere respectly. These generates the .pdf files that can be found in the folder [Plots](./Plots).
 
-* The File named [Newimplementation_CorNoise](./Newimplementation_CorNoise.cpp) is an implementation of the last code but with the difference that this one use correlated noise based in the noise produced by a normal distribution.
+* The File named [Newimplementation_CorNoise](./Newimplementation_CorNoise.cpp) is an implementation of the last code but with the difference that this one use correlated noise based in the noise produced by a normal distribution (![equation](https://latex.codecogs.com/gif.latex?\mu = 0, &space; \sigma = 1)). 
+	- In the program to change the unravelings we only have to change the ![equation](https://latex.codecogs.com/gif.latex?\U_{corr})
+		```c++
+			// u that generates the noise 
+  			std::complex<double> U_corr (1.0,0.0);
+		```
+		
+	By changing this ![equation](https://latex.codecogs.com/gif.latex?\U_{corr}) the noise I generate changes for example:
+	> ![equation](https://latex.codecogs.com/gif.latex?\U_{corr} =1), generates real noise (Homodyne Detection), ![equation](https://latex.codecogs.com/gif.latex?\U_{corr}=-1), generates imaginary pure noise (Heterodyne Detection) and ![equation](https://latex.codecogs.com/gif.latex?\U_{corr}=0) generates complex non correlated noise (Photo detection)
+		
